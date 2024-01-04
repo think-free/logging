@@ -87,3 +87,9 @@ func getZapLevelFromString(level string) zapcore.Level {
 	}
 	return zap.InfoLevel
 }
+
+// Use this function if you don't want the key/value pair to be present in the context logger 
+// Use it if you set the same tag repeatedly in a loop for example as the tag will be duplicated each time
+func GetZapLoggerWithValue(ctx context.Context, key string, value interface{}) *zap.SugaredLogger {
+	return Logger(ctx).With(key, value)
+}
